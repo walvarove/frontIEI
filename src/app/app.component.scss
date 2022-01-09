@@ -1,0 +1,12 @@
+header {
+  padding: 10px;
+  a {
+    margin: 0 10px;
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+  }
+
+  .active{   
+        text-decoration: underline;
+  }
+}

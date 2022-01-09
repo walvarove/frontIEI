@@ -1,0 +1,73 @@
+<div class="top">
+  <h1>Buscador de bibliotecas</h1>
+</div>
+<div class="middle">
+  <div class="form">
+    <form [formGroup]="searchForm" >
+      <div class="fieldContainer">
+        <mat-form-field class="formField">
+          <mat-label>Comunidad Autónoma</mat-label>
+          <mat-select formControlName="locality" (selectionChange)="setProvinces($event.value)">
+            <mat-option *ngFor="let i of cities" [value]="i">
+              {{i.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button  class="button" color="accent" (click)="cleanField('locality')">Limpiar</button>
+      </div>
+      <div class="fieldContainer">
+        <mat-form-field class="formField">
+          <mat-label>Provincia</mat-label>
+          <mat-select formControlName="province" (selectionChange)="setLocalities($event.value)">
+            <mat-option *ngFor="let i of provinces" [value]="i">
+              {{i.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button  class="button" color="accent" (click)="cleanField('province')">Limpiar</button>
+      </div>
+      <div class="fieldContainer">
+        <mat-form-field class="formField">
+          <mat-label>Localidad | Código Postal</mat-label>
+          <mat-select formControlName="postalCode" (selectionChange)="setPostalCodes($event.value)">
+            <mat-option *ngFor="let i of localities" [value]="i">
+              {{i.name}} - {{i.code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button  class="button" color="accent" (click)="cleanField('postalCode')">Limpiar</button>
+      </div>
+      <div class="fieldContainer">
+        <mat-form-field class="formField">
+          <mat-label>Tipo</mat-label>
+          <mat-select formControlName="type" (selectionChange)="setType($event.value)">
+            <mat-option *ngFor="let i of libraryTypes" [value]="i">
+              {{i}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button  class="button" color="accent" (click)="cleanField('type')">Limpiar</button>
+      </div>
+    </form>
+    <div class="buttons">
+      <button mat-button class="button" color="accent">Cancelar</button>
+      <button mat-button class="button" color="accent" (click)="search()">Buscar</button>
+      <button mat-button class="button" color="accent" (click)="clean()">Limpiar Todo</button>
+    </div>
+  </div>
+  <div class="map-container">
+    <div id="map"></div>
+  </div>
+</div>
+<div class="bottom">
+  <div class="text">
+    <p>Resultados de busqueda:</p>
+  </div>
+  <div class="lista">
+    <mat-list class="matList">
+      <mat-list-item *ngFor="let i of libraries">
+        {{i.name}}
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

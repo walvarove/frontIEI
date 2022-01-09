@@ -1,0 +1,39 @@
+
+<div class="overlay" *ngIf="cargando">
+  <div class="spinner ">
+    <img src="https://res.cloudinary.com/dxxvcl5fe/image/upload/v1639167574/cargandoajax_ensydf.gif"/>
+  </div>
+</div>
+
+<div style="text-align: center; padding-top: 60px;">
+  <h1 class="paddingContent">Carga del almacén de datos</h1>
+
+  <div class="flex paddingContent" style="gap: 20px;">
+    <div class="responsiveTxt">
+      Seleccione fuente:
+    </div>
+
+    <div class="responsiveTextItems" style="text-align: left;">
+      <mat-checkbox class="padding" [disabled]="isCatalunyaDisable || isValenciaDisable || isEuskadiDisable" [checked]="todasCheck" (change)="todas($event.checked)">Seleccionar todas</mat-checkbox> <br>
+      <mat-checkbox class="padding" [disabled]="isCatalunyaDisable" [checked]="catalunyaCheck" (change)="catalunya($event.checked)">Catalunya</mat-checkbox> <br>
+      <mat-checkbox class="padding" [disabled]="isValenciaDisable" [checked]="valenciaCheck" (change)="valencia($event.checked)">Comunitat Valenciana</mat-checkbox> <br>
+      <mat-checkbox class="padding" [disabled]="isEuskadiDisable" [checked]="euskadiCheck" (change)="euskadi($event.checked)">Euskadi</mat-checkbox> <br>
+    </div>
+  </div>
+
+  <div class="flex paddingContent" style="gap: 30px;">
+    <button [disabled]="!isAnySelected" mat-raised-button (click)="cancelar()">Cancelar</button>
+    <button [disabled]="!isAnySelected" mat-raised-button color="primary" (click)="cargar()">Cargar</button>
+  </div>
+
+  <div class="responsiveTxt paddingContent" style="text-align: left; padding-left: 20%;">
+    Resultados de la carga:
+  </div>
+
+  <div>
+    <textarea ng-model="string" ng-name="text" #datosCargados>{{libs != null ? (libs | async | json) : ""}}</textarea>
+  </div>
+
+</div>
+
+<!-- {{libs != null ? (libs | async | json) : ""}} -->
